@@ -1,0 +1,7 @@
+# Ignorar todo
+*
+
+# Excepto
+!Domain.pddl
+!probTRANSPORT-1.pddl
+!.gitignore
