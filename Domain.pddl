@@ -18,7 +18,7 @@
     bus - motransporation       
   )
 
-  (:predicates (in ?c - city ?x - (either location locatable))
+  (:predicates (in ?c - city ?x - location)
                (at ?l - location ?x - locatable)
                (isconnected ?l1 - location ?l2 - location)
                (transportedby ?p - package ?x - motransporation)
