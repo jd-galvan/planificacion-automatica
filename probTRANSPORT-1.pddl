@@ -53,9 +53,6 @@
 	(isavailable f2)
 	(isavailable f3)
 	(isavailable f4)
-	(isavailable d1)
-	(isavailable d2)
-	(isavailable d3)
 )
 
 (:goal (and (at ca3 p1) (at ca3 p2)))
