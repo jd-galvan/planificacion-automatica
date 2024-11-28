@@ -56,11 +56,6 @@
 	(isavailable d1)
 	(isavailable d2)
 	(isavailable d3)
-	(unavailablebuses ca1)
-	(unavailablebuses ca2)
-	(unavailablebuses e2)
-	(unavailablebuses e3)
-	(unavailablebuses e4) 
 )
 
 (:goal (and (at ca3 p1) (at ca3 p2)))

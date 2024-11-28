@@ -23,21 +23,20 @@
                (isconnected ?l1 - location ?l2 - location)
                (transportedby ?p - package ?x - motransporation)
                (drivenby ?f - bus ?d - driver)
-               (isavailable ?x - (either bus driver))
-               (unavailablebuses ?l - location)             
+               (isavailable ?x - (either bus driver))           
   )
 
   (:action loadPackage
-	     :parameters (?p - package ?h - house ?d - driver ?f - bus)
-	     :precondition (and (at ?h ?d) (at ?h ?p) (drivenby ?f ?d))
+	     :parameters (?p - package ?l1 - location ?f - motransporation)
+	     :precondition (and (at ?l1 ?p) (at ?l1 ?f))
            :effect
-	               (and (not (at ?h ?p))(transportedby ?p ?f)))
+	               (and (not (at ?l1 ?p)) (transportedby ?p ?f)))
 
 
  (:action walk
 	     :parameters (?l1 - location ?l2 - location ?d - driver ?c - city)
 	     :precondition (and (in ?c ?l1) (in ?c ?l2) (at ?l1 ?d)
-                              (unavailablebuses ?l1) (isavailable ?d))
+                              (isavailable ?d))
     	     :effect
 	     (and (at ?l2 ?d) (not (at ?l1 ?d))))
 
@@ -49,26 +48,21 @@
 	     (and 
         (drivenby ?f ?d) 
         (not (isavailable ?d)) 
-        (not (isavailable ?f)) 
-        (when 
-            (forall (?b - bus) (or (not (at ?l1 ?b)) (not (isavailable ?b))))
-            (unavailablebuses ?l1)
-        )))
+        (not (isavailable ?f))
+        (not (at ?l1 ?d)) 
+        ))
 
+(:action getoff
+	     :parameters (?l1 - location ?d - driver ?f - bus)
+	     :precondition (and (at ?l1 ?f) (drivenby ?f ?d))                              
+	     :effect
+	     (and (not (drivenby ?f ?d)) (at ?l1 ?d) (isavailable ?d) (isavailable ?f)))
 
  (:action moveF
 	     :parameters (?l1 - location ?l2 - location ?d - driver ?c - city ?f - bus)
-	     :precondition (and (in ?c ?l1) (in ?c ?l2) (at ?l1 ?d) (at ?l1 ?f) (drivenby ?f ?d))                              
+	     :precondition (and (in ?c ?l1) (in ?c ?l2) (at ?l1 ?f) (drivenby ?f ?d))                              
 	     :effect
-	     (and (at ?l2 ?d) (at ?l2 ?f) (not (at ?l1 ?d)) (not (at ?l1 ?f))))
-
-
- (:action transferPackage
-	     :parameters (?p - package ?m1 - motransporation ?m2 - motransporation ?l - location)
-	     :precondition (and (at ?l ?m1) (at ?l ?m2) (transportedby ?p ?m1))
-    	     :effect
-	     (and (transportedby ?p ?m2) (not (transportedby ?p ?m1))))
-
+	     (and (at ?l2 ?f) (not (at ?l1 ?f))))
 
  (:action moveToA
 	     :parameters (?t - (either train airplane) ?e1 - (either station airport) ?e2 - (either station airport))
@@ -76,11 +70,10 @@
     	     :effect
 	     (and (at ?e2 ?t) (not (at ?e1 ?t))))
 
-
-(:action deliverPackage
-	     :parameters (?p - package ?h - house ?d - driver ?f - bus)
-	     :precondition (and (transportedby ?p ?f) (at ?h ?f) (drivenby ?f ?d))
+(:action unloadPackage
+	     :parameters (?p - package ?l1 - location ?f - motransporation)
+	     :precondition (and (transportedby ?p ?f) (at ?l1 ?f))
            :effect
-	               (and (at ?h ?p) (not (transportedby ?p ?f))))
+	               (and (at ?l1 ?p) (not (transportedby ?p ?f))))
  
 )
