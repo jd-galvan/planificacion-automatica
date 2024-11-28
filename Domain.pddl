@@ -23,7 +23,7 @@
                (isconnected ?l1 - location ?l2 - location)
                (transportedby ?p - package ?x - motransporation)
                (drivenby ?f - bus ?d - driver)
-               (isavailable ?x - (either bus driver))           
+               (isavailable ?x - bus)           
   )
 
   (:action loadPackage
@@ -35,19 +35,17 @@
 
  (:action walk
 	     :parameters (?l1 - location ?l2 - location ?d - driver ?c - city)
-	     :precondition (and (in ?c ?l1) (in ?c ?l2) (at ?l1 ?d)
-                              (isavailable ?d))
+	     :precondition (and (in ?c ?l1) (in ?c ?l2) (at ?l1 ?d))
     	     :effect
 	     (and (at ?l2 ?d) (not (at ?l1 ?d))))
 
 
  (:action geton
 	     :parameters (?l1 - location ?d - driver ?f - bus)
-	     :precondition (and (at ?l1 ?d) (at ?l1 ?f) (isavailable ?d) (isavailable ?f))                              
+	     :precondition (and (at ?l1 ?d) (at ?l1 ?f) (isavailable ?f))                              
 	     :effect
 	     (and 
         (drivenby ?f ?d) 
-        (not (isavailable ?d)) 
         (not (isavailable ?f))
         (not (at ?l1 ?d)) 
         ))
@@ -56,7 +54,7 @@
 	     :parameters (?l1 - location ?d - driver ?f - bus)
 	     :precondition (and (at ?l1 ?f) (drivenby ?f ?d))                              
 	     :effect
-	     (and (not (drivenby ?f ?d)) (at ?l1 ?d) (isavailable ?d) (isavailable ?f)))
+	     (and (not (drivenby ?f ?d)) (at ?l1 ?d) (isavailable ?f)))
 
  (:action moveF
 	     :parameters (?l1 - location ?l2 - location ?d - driver ?c - city ?f - bus)
