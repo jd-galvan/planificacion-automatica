@@ -62,10 +62,16 @@
 	     :effect
 	     (and (at ?l2 ?f) (not (at ?l1 ?f))))
 
- (:action moveToA
-	     :parameters (?t - (either train airplane) ?e1 - (either station airport) ?e2 - (either station airport))
-	     :precondition (and (at ?e1 ?t) (isconnected ?e1 ?e2))
-    	     :effect
+(:action moveA
+      :parameters (?av - airplane ?a1 - airport ?a2 - airport)
+      :precondition (and (at ?a1 ?av) (isconnected ?a1 ?a2))
+      :effect
+	     (and (at ?a2 ?av) (not (at ?a1 ?av))))
+
+(:action moveT
+      :parameters (?t - train ?e1 - station ?e2 - station)
+      :precondition (and (at ?e1 ?t) (isconnected ?e1 ?e2))
+      :effect
 	     (and (at ?e2 ?t) (not (at ?e1 ?t))))
 
 (:action unloadPackage
