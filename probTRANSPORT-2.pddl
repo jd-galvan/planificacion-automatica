@@ -50,6 +50,9 @@
 	(isavailable f2)
 	(isavailable f3)
 	(isavailable f4)
+	(isavailable f5)
+	(isavailable f6)
+	(isavailable f7)
 )
 
 (:goal (and (at ca3 p1) (at ca3 p2) (at ca3 p3) (at ca3 p4) (at ca3 p5) (at ca3 p6)))
