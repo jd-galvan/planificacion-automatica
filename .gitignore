@@ -4,4 +4,7 @@
 # Excepto
 !Domain.pddl
 !probTRANSPORT-1.pddl
+!probTRANSPORT-2.pddl
+!probTRANSPORT-3.pddl
+!probTRANSPORT-4.pddl
 !.gitignore
