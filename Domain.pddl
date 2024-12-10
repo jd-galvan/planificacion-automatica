@@ -20,7 +20,6 @@
 
   (:predicates (in ?c - city ?x - location)
                (at ?l - location ?x - locatable)
-               (isconnected ?l1 - location ?l2 - location)
                (transportedby ?p - package ?x - motransporation)
                (drivenby ?f - bus ?d - driver)
                (isavailable ?x - bus)           
@@ -64,13 +63,13 @@
 
 (:action moveA
       :parameters (?av - airplane ?a1 - airport ?a2 - airport)
-      :precondition (and (at ?a1 ?av) (isconnected ?a1 ?a2))
+      :precondition (and (at ?a1 ?av))
       :effect
 	     (and (at ?a2 ?av) (not (at ?a1 ?av))))
 
 (:action moveT
       :parameters (?t - train ?e1 - station ?e2 - station)
-      :precondition (and (at ?e1 ?t) (isconnected ?e1 ?e2))
+      :precondition (and (at ?e1 ?t))
       :effect
 	     (and (at ?e2 ?t) (not (at ?e1 ?t))))
 
