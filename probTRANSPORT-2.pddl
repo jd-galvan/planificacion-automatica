@@ -52,6 +52,6 @@
 	(isavailable f4)
 )
 
-(:goal (and (at ca3 p1) (at ca3 p2)))
+(:goal (at ca3 package)
 
 )
