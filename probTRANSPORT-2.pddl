@@ -52,6 +52,6 @@
 	(isavailable f4)
 )
 
-(:goal (at ca3 package)
+(:goal (at ca3 package))
 
 )
