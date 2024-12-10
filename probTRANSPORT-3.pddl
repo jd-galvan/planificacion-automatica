@@ -48,6 +48,6 @@
 	(isavailable f4)
 )
 
-(:goal (at ca2 package))
+(:goal (and (at ca2 p1) (at ca2 p2) (at ca2 p3) (at ca2 p4) (at ca2 p5) (at ca2 p6) (at ca2 p7) (at ca2 p8) (at ca2 p9)))
 
 )
